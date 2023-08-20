@@ -1,0 +1,80 @@
+#include <iostream>//библиотека ввода-вывода
+#include <iomanip>//библиотека форматирования вывода
+
+using namespace std;//использование пространства имен стандартной библиотеки
+
+class Seller {//объявление класса "Продавец" для хранения информации о продавцах магазина.
+    public:
+    string name;
+    int id;
+    Seller(string name,int id){//конструктор класса "Продавец", устанавливает значения полей объекта при его создании.
+        this->id = id;
+        this->name = name;
+    }
+};
+class Category {//объявление класса "Категория" для хранения информации о категориях товаров.
+    public:
+    string name;
+    int id;
+    Category(string name,int id){//конструктор класса "Категория", устанавливает значения полей объекта при его создании.
+        this->id = id;
+        this->name = name;
+    }
+};
+class Brand {// объявление класса "Бренд" для хранения информации о брендах товаров.
+    public:
+    string name;
+    int id;
+    Brand(string name,int id){//конструктор класса "Бренд", устанавливает значения полей объекта при его создании.
+        this->id = id;
+        this->name = name;
+    }
+};
+class Product {//объявление класса "Товар" для хранения информации о товарах.
+    public:
+    string product_name;
+    int id, seller, brand, product_category;
+    Product(int id,int seller,int brand,int product_category,string product_name){//конструктор класса "Товар", устанавливает значения полей объекта при его создании.
+        this->id = id;
+        this->seller = seller;
+        this->brand =brand;
+        this->product_category = product_category;
+        this->product_name = product_name;
+    }
+};
+
+string findBrand(int id, Brand *brands) {//функция для поиска бренда по его идентификатору.
+
+    for (int i = 0; i < 5; i++) {
+        if (id == brands[i].id) 
+            return brands[i].name;
+    }
+    return "None";
+}
+string findcat(int id, Category *categorys) {//функция для поиска категории по её идентификатору.
+
+    for (int i = 0; i < 5; i++) {
+        if (id == categorys[i].id) 
+            return categorys[i].name;
+    }
+    return "None";
+}
+string findsel(int id, Seller *sellers) {//функция для поиска продавца по его идентификатору.
+
+    for (int i = 0; i < 5; i++) {
+        if (id == sellers[i].id) 
+            return sellers[i].name;
+    }
+    return "None";
+}
+int main(){//главная функция
+    Seller sellers[5] = { Seller("q", 1),  Seller("w", 2),  Seller("e", 3),  Seller("r", 4),  Seller("t", 5)};//создание массива объектов класса "Продавец" и заполнение его значениями
+    Brand brands[5] = {Brand("a", 1), Brand("s", 2), Brand("d", 3), Brand("f", 4), Brand("g", 5)};//создание массива объектов класса "Бренд" и заполнение его значениями
+    Category categorys [5] = {Category("z", 1), Category("x", 2), Category("c", 3), Category("v", 4), Category("b", 5)};// создание массива объектов класса "Категория" и заполнение его значениями
+    Product products [5] = {Product(1, 1, 1, 1, "xiaomi "), Product(2, 2, 2, 2, "redmi  "), Product(3, 3, 3, 3, "android"), Product(4, 4, 4, 4, "rebit  "), Product(5, 5, 5, 5, "apl    ")};//создание массива объектов класса "Товар" и заполнение его значениями
+    cout<<"id"<<" "<<"product_name"<<" "<<"brand"<<" "<<"product_category"<<" "<<"seller"<<"\n";//вывод заголовков столбцов таблицы
+    for(Product product : products){//цикл для прохода по массиву товаров.
+        cout<< product.id <<"  "<< product.product_name <<setw(7)<< findBrand(product.id, brands) <<setw(6)<<findcat(product.id, categorys)<<setw(5)<<setw(17)<<findsel(product.id, sellers)<<endl;//вывод информации о товаре, включающей его идентификатор, название, бренд, категорию и продавца, с помощью функций findBrand, findcat и findsel для поиска соответствующих значений
+    }
+    return 0;//успешное завершение программы с кодом 0
+}
