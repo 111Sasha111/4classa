@@ -76,5 +76,5 @@ int main(){
     for(Product product : products){
         cout<< product.id <<"  "<< product.product_name <<setw(7)<< findBrand(product.id, brands) <<setw(6)<<findcat(product.id, categorys)<<setw(5)<<setw(17)<<findsel(product.id, sellers)<<endl;
     }
-    return 0;//успешное завершение программы с кодом 0
+    return 0;
 }
